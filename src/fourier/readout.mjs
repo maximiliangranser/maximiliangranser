@@ -1,12 +1,19 @@
 import fs from 'node:fs';
 import opentype from 'opentype.js';
+import { compactPathData, hundredths } from './format.mjs';
 import { runningTotals } from './geometry.mjs';
 import { element } from './markup.mjs';
 
 const INDEX_SCALE = 0.75;
 const SUBSCRIPT_DROP = 0.28;
 const SUPERSCRIPT_RISE = 0.42;
-const PATH_DATA = { decimalPlaces: 2, flipY: false, optimize: false };
+const COMMAND_COORDINATES = {
+  M: ['x', 'y'],
+  L: ['x', 'y'],
+  Q: ['x1', 'y1', 'x', 'y'],
+  C: ['x1', 'y1', 'x2', 'y2', 'x', 'y'],
+  Z: [],
+};
 
 export function loadOutlineFont(url) {
   const buffer = fs.readFileSync(url);
@@ -22,7 +29,13 @@ export function readout(font, { right, baseline, size }, termCount) {
 }
 
 function runOutline(font, run, left, baseline) {
-  return font.getPath(run.text, left, baseline, run.size).toPathData(PATH_DATA);
+  const { commands } = font.getPath(run.text, left, baseline, run.size);
+  return compactPathData(commands.map(pathCommand).join(''));
+}
+
+function pathCommand(command) {
+  const coordinates = COMMAND_COORDINATES[command.type].map((key) => hundredths(command[key]));
+  return `${command.type}${coordinates.join(' ')}`;
 }
 
 function formulaRuns(termCount) {

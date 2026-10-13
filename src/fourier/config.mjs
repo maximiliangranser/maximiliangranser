@@ -4,7 +4,7 @@ export const FONTS = {
 };
 
 export const SERIES = {
-  termCount: 240,
+  termCount: 320,
   sampleCount: 8192,
   highestFrequency: 700,
   coefficientDecimals: 3,

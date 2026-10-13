@@ -9,7 +9,7 @@ function desktopScene() {
     name: 'hero',
     width,
     height,
-    signature: { maxWidth: 580, baseline, shiftX: 6 },
+    signature: { maxWidth: 740, baseline, shiftX: 0 },
     closingSwoop: { bottomY: baseline + 44, bottomSpanShare: 0.5, bottomHandleSpanShare: 0.18 },
     chainBand: { hiddenAbove: 14, fullFrom: 64, fullTo: height - 44, hiddenBelow: height - 10 },
     graticule: { spacing: 23.5, centerY: baseline - 40 },
@@ -39,16 +39,16 @@ function desktopScene() {
 
 function mobileScene() {
   const width = 560;
-  const height = 270;
-  const baseline = 164;
+  const height = 310;
+  const baseline = 152;
   return {
     name: 'hero-mobile',
     width,
     height,
-    signature: { maxWidth: 480, baseline, shiftX: 4 },
-    closingSwoop: { bottomY: baseline + 40, bottomSpanShare: 0.5, bottomHandleSpanShare: 0.2 },
-    chainBand: { hiddenAbove: 36, fullFrom: 80, fullTo: height - 40, hiddenBelow: height - 10 },
-    graticule: { spacing: 28, centerY: baseline - 34 },
+    signature: { maxWidth: 480, baseline, shiftX: 4, stackedWords: { lineSpacing: 700 } },
+    closingSwoop: { bottomY: baseline + 100, bottomSpanShare: 0.5, bottomHandleSpanShare: 0.2 },
+    chainBand: { hiddenAbove: 36, fullFrom: 76, fullTo: height - 36, hiddenBelow: height - 8 },
+    graticule: { spacing: 28, centerY: baseline + 18 },
     inkWidths: { light: { main: 3.2, secondary: 7 }, dark: { main: 2.6, secondary: 6.2 } },
     hotHeadWidth: 4.8,
     chainWidths: { circle: 1.1, arm: 1.4, thinArm: 1.05, faintArm: 0.7 },

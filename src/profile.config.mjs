@@ -1,1 +1,1 @@
-export const profile = { display: 'Maximilian' };
+export const profile = { display: 'Maximilian Granser' };
